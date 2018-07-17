@@ -111,7 +111,12 @@ function delegateScenarios (config) {
 
   var scenarioViewId = 0;
   scenarios.forEach(function (scenario) {
-    config.viewports.forEach(function (viewport) {
+    var viewportsObj = config.viewports;
+    // if a scenario has its own viewports defined
+    if (scenario.viewports) {
+      viewportsObj = scenario.viewports;
+    }
+    viewportsObj.forEach(function (viewport) {
       scenarioViews.push({
         scenario: scenario,
         viewport: viewport,
